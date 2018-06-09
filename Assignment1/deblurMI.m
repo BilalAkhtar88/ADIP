@@ -1,4 +1,6 @@
 function deblurMI()
+% clc;
+% clear all;
 
 % I = imread('DSC_0619.jpg');
 I = imread('peppers.png');
@@ -9,32 +11,32 @@ sharpness=estimate_sharpness(double(I));
 % disp(['Sharpness of original image: ' num2str(sharpness)]);
 ite = 1;
 
-% for THETA = -90:1:90
+for THETA2 = -90:5:90
 LEN = 10;
-THETA = 90;
+THETA = 0;
 PSFH = fspecial('motion', LEN, THETA);
 I2 = imfilter(I, PSFH, 'conv', 'circular');
-sharpness=estimate_sharpness(double(I2));
+% sharpness=estimate_sharpness(double(I2));
 % disp(['Sharpness of Vertical Blur: ' num2str(sharpness)]);
-figure()
-imshow(I2);
+% figure()
+% imshow(I2);
 % title('Ver Blurred Image');
 
 % for THETA = -90:1:90
 
-THETA2 = 40;
+% THETA2 = 0;
 
 
 %     ite
 %     
-LEN2 = 10;
+LEN2 = 5;
 % THETA2 = 90;
 PSFV = fspecial('motion', LEN2, THETA2);
 I1 = imfilter(I, PSFV, 'conv', 'circular');
 % sharpness=estimate_sharpness(double(I1));
 % disp(['Sharpness of Horizontal Blur: ' num2str(sharpness)]);
-figure()
-imshow(I1)
+% figure()
+% imshow(I1)
 J1 = I2;
 J2 = I1;
 
@@ -219,24 +221,31 @@ G21C = conj(G21);
 % end
 
 dBI1It1 = ifft2(G11); 
-% s1(ite)=abs(estimate_sharpness(double(dBI1It1)));
+s1(ite)=abs(estimate_sharpness(double(dBI1It1)));
 % disp(['Sharpness of Horizontal deBlur: ' num2str(sharpness)]);
 
 dBI2It1 = ifft2(G21);
-% s2(ite)=abs(estimate_sharpness(double(dBI2It1)));
+s2(ite)=abs(estimate_sharpness(double(dBI2It1)));
 
 % sharpness=abs(estimate_sharpness(double(dBI2It1)));
 % disp(['Sharpness of Vertical deBlur: ' num2str(sharpness)]);
 ite = ite + 1;
-% end
+end
 
 % figure()
 % imshow(I1)
-figure()
-% plot(s1)
-% figure()
-% plot(s2)
-imshow(dBI1It1,[])
+figure(1)
+hold on
+plot(-90:5:90,s1)
+figure(2)
+hold on
+plot(-90:5:90,s2)
+figure(3)
+hold on
+plot(-90:5:90,mean([s1;s2]))
+
+
+% imshow(dBI1It1,[])
 % % figure(3)
 % % % imshow(ifft2(G12),[])
 % % % figure(4)
@@ -245,8 +254,8 @@ imshow(dBI1It1,[])
 % % % imshow(abs(ifft2(G14)),[])
 % figure()
 % imshow(I2)
-figure()
-imshow(dBI2It1,[])
+% figure()
+% imshow(dBI2It1,[])
 % % % figure(8)
 % % % imshow(abs(ifft2(G22)),[])
 % % % figure(9)
