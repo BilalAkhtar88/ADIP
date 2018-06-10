@@ -2,16 +2,13 @@ function deblurMI()
 % clc;
 % clear all;
 
-% I = imread('DSC_0619.jpg');
 I = imread('peppers.png');
 if numel(size(I)) >= 3
     I = rgb2gray(I);
 end
-sharpness=estimate_sharpness(double(I));
-% disp(['Sharpness of original image: ' num2str(sharpness)]);
 ite = 1;
 
-for THETA2 = -90:5:90
+% for THETA2 = -90:5:90
 LEN = 10;
 THETA = 0;
 PSFH = fspecial('motion', LEN, THETA);
@@ -229,8 +226,8 @@ s2(ite)=abs(estimate_sharpness(double(dBI2It1)));
 
 % sharpness=abs(estimate_sharpness(double(dBI2It1)));
 % disp(['Sharpness of Vertical deBlur: ' num2str(sharpness)]);
-ite = ite + 1;
-end
+% ite = ite + 1;
+% end
 
 % figure()
 % imshow(I1)
