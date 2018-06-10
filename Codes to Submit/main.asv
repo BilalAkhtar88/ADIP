@@ -33,8 +33,8 @@ imshow(dBI2,[])
 title(strcat('Restored Image2 after', {' '}, num2str(numIte), ' iterations'))  
 
 theta1 = -90:5:90;
-theta2 = 0;
-for i = 1:numel(theta1)
+
+for i = 1:numel(theta2)
     [I1, I2, dBI1, dBI2] = Assignment_1(I, numIte, 40, theta1(i), theta2);
     s1(i) = estimate_sharpness(dBI1);
     s2(i) = estimate_sharpness(dBI2);
@@ -43,11 +43,11 @@ end
 
 figure()
 subplot(3,1,1)
-plot(theta1, s1)
+plot(theta2, s1)
 subplot(3,1,2)
-plot(theta1, s2)
+plot(theta2, s2)
 subplot(3,1,3)
-plot(theta1, s3)
+plot(theta2, s3)
 
 
 
