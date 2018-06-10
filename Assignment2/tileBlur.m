@@ -73,16 +73,16 @@ bigIm(2*M+1:3*M,N+1:2*N) = A;
 bigIm(2*M+1:3*M,2*N+1:3*N) = C;
 
 
-
-figure(2)
-subplot(3,1,1)
-imshow(Aprime,[])
-subplot(3,1,2)
-imshow(Bprime,[])
-subplot(3,1,3)
-imshow(Cprime,[])
-
-figure(3)
-imshow(bigIm,[])
+% 
+% figure(2)
+% subplot(3,1,1)
+% imshow(Aprime,[])
+% subplot(3,1,2)
+% imshow(Bprime,[])
+% subplot(3,1,3)
+% imshow(Cprime,[])
+% 
+% figure(3)
+% imshow(bigIm,[])
 
 end
